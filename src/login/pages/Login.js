@@ -1,7 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom"; //'react-router-dom'에서 제공하는 {Link}를 import
 import logo from "../../public/image/logo.png";
+import LoginService from "../service";
+
 class Login extends React.Component {
+  async onClickLoginButton() {
+    console.log("?!!!!!!!!!");
+    await LoginService.login({ email: "test", passward: "ss123s" });
+  }
+
   render() {
     return (
       <>
@@ -23,7 +30,12 @@ class Login extends React.Component {
             </div>
           </div>
           <div>
-            <button style={styles.loginButton}>로그인</button>
+            <button
+              onClick={this.onClickLoginButton}
+              style={styles.loginButton}
+            >
+              로그인
+            </button>
           </div>
 
           <div style={{ marginTop: 30 }}>
