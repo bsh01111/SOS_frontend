@@ -1,6 +1,5 @@
 import axios from "axios";
-import config from "../config";
-const url = config.API_URL;
+const url = process.env["REACT_APP_API_URL"];
 
 const Request = async ({
   path,

@@ -3,6 +3,12 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import Routes from "./Routes";
+import path from "path";
+import dotenv from "dotenv";
+
+// set env
+dotenv.config({ path: path.join(__dirname, ".env") });
+dotenv.config();
 
 ReactDOM.render(<Routes />, document.getElementById("root"));
 
