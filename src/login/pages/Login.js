@@ -5,7 +5,6 @@ import LoginService from "../service";
 
 class Login extends React.Component {
   async onClickLoginButton() {
-    console.log("?!!!!!!!!!");
     await LoginService.login({ email: "test", passward: "ss123s" });
   }
 

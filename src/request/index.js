@@ -1,6 +1,6 @@
 import axios from "axios";
-
-const url = "http://localhost:8080";
+import config from "../config";
+const url = config.API_URL;
 
 const Request = async ({
   path,
