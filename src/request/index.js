@@ -1,5 +1,5 @@
 import axios from "axios";
-const url = process.env["REACT_APP_API_URL"];
+const url = process.env["REACT_APP_API_SERVER_PATH"];
 
 const Request = async ({
   path,
@@ -10,15 +10,17 @@ const Request = async ({
   },
 }) => {
   try {
+    let response;
     if (method === "get") {
-      return await axios.get(url + path, { params: data }, headers);
+      response = await axios.get(url + path, { params: data }, headers);
     } else if (method === "post") {
-      return await axios.post(url + path, data, headers);
+      response = await axios.post(url + path, data, headers);
     } else if (method === "put") {
-      return await axios.post(url + path, data, headers);
+      response = await axios.post(url + path, data, headers);
     } else if (method === "delete") {
-      return await axios.post(url + path, { data }, headers);
+      response = await axios.post(url + path, { data }, headers);
     }
+    return response.data;
   } catch (e) {
     throw e;
   }
