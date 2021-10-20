@@ -1,7 +1,9 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom"; //'react-router-dom'에서 제공하는 {Link}를 import
 import logo from "../../public/image/logo.png";
 import LoginService from "../service";
+import { Button } from "@mui/material";
+
 import * as LocalStorage from "../../lib/localStorage";
 
 const Login = () => {
@@ -10,7 +12,21 @@ const Login = () => {
 
   const onClickLoginButton = async () => {
     const response = await LoginService.login({ email, passward });
-    console.log(response);
+    const userInfo = response.data.userInfo;
+    if (!userInfo) {
+      alert("해당 유저는 존재하지 않습니다.");
+      return;
+    }
+    console.log("성공!");
+    saveUserInfo({
+      userId: userInfo.userId,
+      userEmail: userInfo.userEmail,
+    });
+  };
+
+  const saveUserInfo = ({ userId, userEmail }) => {
+    LocalStorage.setItem("userId", userId);
+    LocalStorage.setItem("userEmail", userEmail);
   };
 
   const loadUserInfo = () => {
@@ -68,12 +84,12 @@ const Login = () => {
         </div>
 
         <div style={{ marginTop: 30 }}>
-          <Link to="/signup" style={styles.signupLink}>
+          <Button component={Link} to={"/signup"} style={styles.signupLink}>
             회원가입
-          </Link>
-          <Link to="/signup" style={styles.findEmailLink}>
+          </Button>
+          <Button component={Link} to={"/signup"} style={styles.findEmailLink}>
             아이디/비밀번호 찾기
-          </Link>
+          </Button>
         </div>
       </div>
     </>
@@ -94,9 +110,11 @@ const styles = {
   },
   signupLink: {
     marginRight: 20,
+    color: "blue",
     textDecoration: "none",
   },
   findEmailLink: {
+    color: "blue",
     textDecoration: "none",
   },
 };
