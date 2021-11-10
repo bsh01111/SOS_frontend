@@ -11,8 +11,6 @@ const Login = () => {
   const [passward, setPassward] = useState("");
 
   const onClickLoginButton = async () => {
-    const response2 = await LoginService.test({ email, passward });
-    console.log(response2);
     const response = await LoginService.login({ email, passward });
 
     const userInfo = response.data.userInfo;

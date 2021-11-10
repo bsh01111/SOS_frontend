@@ -10,14 +10,6 @@ const LoginService = () => {
       data: { email, passward },
     });
   };
-
-  self.test = async () => {
-    return await Request({
-      path: "/user/hello",
-      method: "get",
-    });
-  };
-
   return self;
 };
 
