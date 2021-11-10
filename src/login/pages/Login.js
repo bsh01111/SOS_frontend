@@ -11,7 +11,10 @@ const Login = () => {
   const [passward, setPassward] = useState("");
 
   const onClickLoginButton = async () => {
+    const response2 = await LoginService.test({ email, passward });
+    console.log(response2);
     const response = await LoginService.login({ email, passward });
+
     const userInfo = response.data.userInfo;
     if (!userInfo) {
       alert("해당 유저는 존재하지 않습니다.");
