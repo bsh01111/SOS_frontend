@@ -16,29 +16,9 @@ const SignUp = () => {
     phoneNumber: "",
     certificationNumber: "",
   });
-  const [email, setEmail] = useState("");
-  const [passward, setPassward] = useState("");
 
   const onSignUpButton = async () => {
     console.log(userInfo);
-  };
-
-  const onClickLoginButton = async () => {
-    const response = await LoginService.login({ email, passward });
-    const userInfo = response.data.userInfo;
-    if (!userInfo) {
-      alert("해당 유저는 존재하지 않습니다.");
-      return;
-    }
-    saveUserInfo({
-      userId: userInfo.userId,
-      userEmail: userInfo.userEmail,
-    });
-  };
-
-  const saveUserInfo = ({ userId, userEmail }) => {
-    LocalStorage.setItem("userId", userId);
-    LocalStorage.setItem("userEmail", userEmail);
   };
 
   const loadUserInfo = () => {
@@ -46,16 +26,6 @@ const SignUp = () => {
     if (userId) {
       console.log("자동 로그인~");
     }
-  };
-
-  const emailOnChange = (e) => {
-    const email = e.target.value;
-    setEmail(email);
-  };
-
-  const passwardOnChange = (e) => {
-    const passward = e.target.value;
-    setPassward(passward);
   };
 
   const setValue = (key, value) => {
