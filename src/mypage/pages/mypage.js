@@ -11,7 +11,7 @@ const Mypage = () => {
           <Button
             variant="contained"
             style={styles.editProfileButton}
-            onClick={onEditProfileButton}
+            // onClick={onEditProfileButton}
           >
             프로필 편집
           </Button>
@@ -20,7 +20,7 @@ const Mypage = () => {
           <Button
             variant="contained"
             style={styles.editPostButton}
-            onClick={onEditPostButton}
+            // onClick={onEditPostButton}
           >
             게시글 작성
           </Button>
