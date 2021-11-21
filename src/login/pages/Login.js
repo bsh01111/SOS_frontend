@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom"; //'react-router-dom'에서 제공하는 {Link}를 import
+import { Link } from "react-router-dom";
 import logo from "../../public/image/logo.png";
 import LoginService from "../service";
 import { Button } from "@mui/material";
@@ -57,7 +57,6 @@ const Login = () => {
         <div style={{ margin: 30 }}>
           <img src={logo} />
         </div>
-
         <div>
           <div>
             <input

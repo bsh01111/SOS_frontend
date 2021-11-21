@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import LoginService from "../service";
+import { Link } from "react-router-dom";
 import { Button, TextField, Select, MenuItem } from "@mui/material";
 
 import * as LocalStorage from "../../lib/localStorage";
@@ -136,6 +136,8 @@ const SignUp = () => {
             variant="contained"
             style={styles.signUpButton}
             onClick={onSignUpButton}
+            component={Link}
+            to={"/helpList"}
           >
             가입하기
           </Button>
