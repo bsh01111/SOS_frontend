@@ -1,11 +1,14 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
+import TopLogo from "../../common/component/TopLogo";
+import Footer from "../../common/component/Footer";
 
 const Mypage = () => {
   return (
     <>
-      <div style={{ textAlign: "center" }}>
+      <div style={{ marginTop: 55, marginBottom: 70 }}>
+        <TopLogo />
         <div>
           <Button
             component={Link}
@@ -26,6 +29,7 @@ const Mypage = () => {
             게시글 작성
           </Button>
         </div>
+        <Footer />
       </div>
     </>
   );
