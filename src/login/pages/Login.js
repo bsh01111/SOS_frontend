@@ -1,28 +1,28 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import logo from "../../public/image/logo.png";
 import LoginService from "../service";
 import { Button } from "@mui/material";
-
 import * as LocalStorage from "../../lib/localStorage";
 
 const Login = () => {
+  const pageHistory = useHistory();
   const [email, setEmail] = useState("");
-  const [passward, setPassward] = useState("");
+  const [password, setPassword] = useState("");
 
   const onClickLoginButton = async () => {
-    const response = await LoginService.login({ email, passward });
+    const response = await LoginService.login({ email, password });
 
     const userInfo = response.data.userInfo;
     if (!userInfo) {
       alert("해당 유저는 존재하지 않습니다.");
       return;
     }
-    console.log("성공!");
     saveUserInfo({
       userId: userInfo.userId,
       userEmail: userInfo.userEmail,
     });
+    pageHistory.push("/helpList");
   };
 
   const saveUserInfo = ({ userId, userEmail }) => {
@@ -30,26 +30,15 @@ const Login = () => {
     LocalStorage.setItem("userEmail", userEmail);
   };
 
-  const loadUserInfo = () => {
-    const userId = LocalStorage.getItem("userId");
-    if (userId) {
-      console.log("자동 로그인~");
-    }
-  };
-
   const emailOnChange = (e) => {
     const email = e.target.value;
     setEmail(email);
   };
 
-  const passwardOnChange = (e) => {
-    const passward = e.target.value;
-    setPassward(passward);
+  const passwordOnChange = (e) => {
+    const password = e.target.value;
+    setPassword(password);
   };
-
-  useEffect(() => {
-    loadUserInfo();
-  }, []);
 
   return (
     <>
@@ -72,8 +61,8 @@ const Login = () => {
               placeholder="PASSWORD"
               type="password"
               style={styles.inputStyle}
-              value={passward}
-              onChange={passwardOnChange}
+              value={password}
+              onChange={passwordOnChange}
             ></input>
           </div>
         </div>
