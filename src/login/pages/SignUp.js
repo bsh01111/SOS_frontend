@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import LoginService from "../service";
 import { Button, TextField, Select, MenuItem } from "@mui/material";
-
 import * as LocalStorage from "../../lib/localStorage";
 
 const SignUp = () => {
@@ -12,30 +12,49 @@ const SignUp = () => {
     name: "",
     nickname: "",
     birthday: "",
-    sex: 10,
+    sex: "MAN",
     phoneNumber: "",
-    certificationNumber: "",
   });
 
   const onSignUpButton = async () => {
-    console.log(userInfo);
+    if (!validateSignUp()) return;
+    try {
+      console.log("!!!!!!!!");
+      const response = await LoginService.signUp(userInfo);
+      const user = response.data.userInfo;
+      LocalStorage.setItem("userId", user.Id);
+      LocalStorage.setItem("userEmail", user.Email);
+    } catch (e) {
+      alert("아이디가 이미 존재합니다.");
+    }
   };
 
-  const loadUserInfo = () => {
-    const userId = LocalStorage.getItem("userId");
-    if (userId) {
-      console.log("자동 로그인~");
+  const validateSignUp = () => {
+    const { email, password, name, nickname, birthday, sex, phoneNumber } =
+      userInfo;
+    if (userInfo.password !== userInfo.rePassword) {
+      alert("비밀번호와 재확인이 일치하지 않습니다!");
+      return false;
     }
+    if (
+      !email ||
+      !password ||
+      !name ||
+      !nickname ||
+      !birthday ||
+      !sex ||
+      !phoneNumber
+    ) {
+      alert("필수값이 없습니다!");
+      return false;
+    }
+    return true;
   };
 
   const setValue = (key, value) => {
     userInfo[key] = value;
     setUserInfo(userInfo);
   };
-
-  useEffect(() => {
-    loadUserInfo();
-  }, []);
 
   return (
     <>
@@ -100,35 +119,21 @@ const SignUp = () => {
         <Select
           id="demo-simple-select"
           label="Age"
-          defaultValue={10}
+          defaultValue={"MAN"}
           style={{ width: 300, marginTop: 20 }}
           onChange={(e) => setValue("sex", e.target.value)}
         >
-          <MenuItem value={10}>남자</MenuItem>
-          <MenuItem value={20}>여자</MenuItem>
-          <MenuItem value={30}>비공개</MenuItem>
+          <MenuItem value={"MAN"}>남자</MenuItem>
+          <MenuItem value={"WOMAN"}>여자</MenuItem>
+          <MenuItem value={"NONE"}>비공개</MenuItem>
         </Select>
         <div>
           <TextField
             id="re-password"
             label="전화번호 입력"
             variant="outlined"
-            style={{ width: 190, marginTop: 20, marginRight: 20 }}
+            style={{ width: 300, marginTop: 20 }}
             onChange={(e) => setValue("phoneNumber", e.target.value)}
-          />
-          <Button variant="outlined" style={{ width: 90, marginTop: 20 }}>
-            인증번호 받기
-          </Button>
-        </div>
-        <div>
-          <TextField
-            id="re-password"
-            label="인증번호 입력"
-            variant="outlined"
-            style={styles.largeSizeInput}
-            onChange={(e) =>
-              setValue("phoneNumber", e.target.certificationNumber)
-            }
           />
         </div>
         <div>
@@ -136,8 +141,6 @@ const SignUp = () => {
             variant="contained"
             style={styles.signUpButton}
             onClick={onSignUpButton}
-            component={Link}
-            to={"/helpList"}
           >
             가입하기
           </Button>
