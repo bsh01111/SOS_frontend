@@ -1,45 +1,37 @@
-import { TextField } from "@mui/material";
+import { useEffect, useState } from "react";
 import TopLogo from "../../common/component/TopLogo";
 import Footer from "../../common/component/Footer";
+import HelpItem from "./HelpItem";
+import LoginService from "../service";
 
 const HelpList = () => {
+  const [helpList, setHelpList] = useState([]);
+
+  const getHelpList = async () => {
+    const response = await LoginService.findSosList();
+    console.log(response.data.sosList);
+    setHelpList(response.data.sosList);
+  };
+  useEffect(() => {
+    getHelpList();
+  }, []);
+
   return (
     <>
       <div>
         <TopLogo />
         <div style={{ marginTop: 55, marginBottom: 70 }}>
           <div>
-            <TextField id="email" label="이메일1" variant="outlined" />
-          </div>
-          <div>
-            <TextField id="email" label="이메일2" variant="outlined" />
-          </div>
-          <div>
-            <TextField id="email" label="이메일" variant="outlined" />
-          </div>
-          <div>
-            <TextField id="email" label="이메일" variant="outlined" />
-          </div>
-          <div>
-            <TextField id="email" label="이메일" variant="outlined" />
-          </div>
-          <div>
-            <TextField id="email" label="이메일" variant="outlined" />
-          </div>
-          <div>
-            <TextField id="email" label="이메일" variant="outlined" />
-          </div>
-          <div>
-            <TextField id="email" label="이메일" variant="outlined" />
-          </div>
-          <div>
-            <TextField id="email" label="이메일" variant="outlined" />
-          </div>
-          <div>
-            <TextField id="email" label="이메일" variant="outlined" />
-          </div>
-          <div>
-            <TextField id="email" label="이메일" variant="outlined" />
+            {helpList.map((help) => (
+              <HelpItem
+                mainProfileUrl={help.mainProfileUrl}
+                nickname={help.userNickname}
+                content={help.content}
+                location={help.location}
+                cost={help.cost}
+                mediaUrl={help.mediaUrl}
+              />
+            ))}
           </div>
         </div>
         <Footer />
