@@ -4,6 +4,17 @@ import Footer from "../../common/component/Footer";
 import { Link } from "react-router-dom";
 
 const ChattingRoomList = () => {
+  const [chattingRoomList, setChattingRoomList] = useState([]);
+
+  const getChattingRoomList = async () => {
+    const response = await ChattingService.findChattingRoomList();
+    setChattingRoomList(response.data.chattingRoomList);
+  };
+
+  useEffect(() => {
+    getChattingRoomList();
+  }, []);
+
   return (
     <>
       <div>
@@ -20,6 +31,14 @@ const ChattingRoomList = () => {
           <Button component={Link} to={"/userList"} style={styles.secondButton}>
             사람들
           </Button>
+        </div>
+        <div>
+          {chattingRoomList.map((chattingRoom) => (
+            <ChattingRoomItem
+              id={chattingRoom.id}
+              userId={chattingRoom.userId}
+            />
+          ))}
         </div>
         <Footer />
       </div>
