@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import LoginService from "../service";
 import { Button, TextField, Select, MenuItem } from "@mui/material";
 import * as LocalStorage from "../../lib/localStorage";
 
 const SignUp = () => {
+  const pageHistory = useHistory();
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: "",
@@ -18,11 +20,11 @@ const SignUp = () => {
   const onSignUpButton = async () => {
     if (!validateSignUp()) return;
     try {
-      console.log("!!!!!!!!");
       const response = await LoginService.signUp(userInfo);
       const user = response.data.userInfo;
       LocalStorage.setItem("userId", user.Id);
       LocalStorage.setItem("userEmail", user.Email);
+      pageHistory.push("/helpList");
     } catch (e) {
       alert("아이디가 이미 존재합니다.");
     }

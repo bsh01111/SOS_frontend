@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import TopLogo from "../../common/component/TopLogo";
 import Footer from "../../common/component/Footer";
 import HelpItem from "./HelpItem";
-import LoginService from "../service";
+import HelpListService from "../service";
 
 const HelpList = () => {
   const [helpList, setHelpList] = useState([]);
 
   const getHelpList = async () => {
-    const response = await LoginService.findSosList();
-    console.log(response.data.sosList);
+    const response = await HelpListService.findSosList();
     setHelpList(response.data.sosList);
   };
+
   useEffect(() => {
     getHelpList();
   }, []);
@@ -24,6 +24,7 @@ const HelpList = () => {
           <div>
             {helpList.map((help) => (
               <HelpItem
+                id={help.id}
                 mainProfileUrl={help.mainProfileUrl}
                 nickname={help.userNickname}
                 content={help.content}

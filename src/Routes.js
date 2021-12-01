@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./login/pages/Login";
 import SignUp from "./login/pages/SignUp";
 import HelpList from "./helplist/pages/HelpList";
+import HelpDetail from "./helpdetail/pages/HelpDetail";
 import Mypage from "./mypage/pages/mypage";
 import EditProfile from "./mypage/pages/editprofile";
 // import EditPost from "./mypage/pages/editpost";
@@ -17,6 +18,7 @@ class Routes extends React.Component {
           <Route exact path="/" component={Login} />
           <Route exact path="/signUp" component={SignUp} />
           <Route exact path="/helpList" component={HelpList} />
+          <Route exact path="/helpDetail/:id" component={HelpDetail} />
           <Route exact path="/myPage" component={Mypage} />
           <Route exact path="/editProfile" component={EditProfile} />
           {/* <Route exact path="/signup" component={Signup} />

@@ -1,9 +1,11 @@
 import profile from "../../public/image/profile.jpeg";
 import help from "../../public/image/help.png";
 import { TextField } from "@mui/material";
+import { useHistory } from "react-router-dom";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 
-const HelpList = ({
+const HelpItem = ({
+  id,
   mainProfileUrl,
   nickname,
   content,
@@ -11,6 +13,11 @@ const HelpList = ({
   cost,
   mediaUrl,
 }) => {
+  const pageHistory = useHistory();
+  const onClickDetailButton = async () => {
+    pageHistory.push(`/helpDetail/${id}`);
+  };
+
   return (
     <>
       <div style={styles.container}>
@@ -23,7 +30,10 @@ const HelpList = ({
             value={nickname || ""}
             style={styles.prifileNickname}
           />
-          <KeyboardDoubleArrowRightIcon style={styles.profileIcon} />
+          <KeyboardDoubleArrowRightIcon
+            style={styles.profileIcon}
+            onClick={onClickDetailButton}
+          />
         </div>
         <div style={styles.helpDiv}>
           <TextField
@@ -83,4 +93,4 @@ const styles = {
   },
 };
 
-export default HelpList;
+export default HelpItem;
