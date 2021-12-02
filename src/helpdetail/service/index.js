@@ -10,6 +10,14 @@ const HelpDetailService = () => {
     });
   };
 
+  self.insertUserSosApply = async ({ userId, sosId }) => {
+    return await Request({
+      path: `/sos/userApply`,
+      method: "post",
+      data: { userId, sosId },
+    });
+  };
+
   return self;
 };
 

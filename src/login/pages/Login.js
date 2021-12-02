@@ -19,8 +19,8 @@ const Login = () => {
       return;
     }
     saveUserInfo({
-      userId: userInfo.userId,
-      userEmail: userInfo.userEmail,
+      userId: userInfo.id,
+      userEmail: userInfo.email,
     });
     pageHistory.push("/helpList");
   };

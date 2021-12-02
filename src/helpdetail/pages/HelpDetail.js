@@ -5,6 +5,7 @@ import TopLogo from "../../common/component/TopLogo";
 import Footer from "../../common/component/Footer";
 import { TextField, Button } from "@mui/material";
 import HelpDetailService from "../service";
+import * as LocalStorage from "../../lib/localStorage";
 
 const HelpDetail = (props) => {
   const [helpDetail, setHelpDetail] = useState({
@@ -15,6 +16,7 @@ const HelpDetail = (props) => {
     location: "",
     cost: 0,
     mediaUrl: "",
+    userId: 0,
   });
 
   const getHelpDetail = async () => {
@@ -30,7 +32,23 @@ const HelpDetail = (props) => {
         location: helpDetailInfo.location,
         cost: helpDetailInfo.cost,
         mediaUrl: helpDetailInfo.mediaUrl,
+        userId: helpDetailInfo.userId,
       });
+    }
+  };
+
+  const onClickHelpButton = async () => {
+    const { id: helpId } = helpDetail;
+    const userId = LocalStorage.getItem("userId");
+    if (!userId) {
+      alert("로그인이 필요합니다.");
+      return;
+    }
+    try {
+      await HelpDetailService.insertUserSosApply({ userId, sosId: helpId });
+      alert("신청 성공!");
+    } catch (e) {
+      alert("이미 도움을 신청했습니다");
     }
   };
 
@@ -88,7 +106,9 @@ const HelpDetail = (props) => {
             />
           </div>
           <div style={styles.helpButtonDiv}>
-            <Button style={styles.helpButton}>도와주기</Button>
+            <Button style={styles.helpButton} onClick={onClickHelpButton}>
+              도와주기
+            </Button>
           </div>
         </div>
         <Footer />
