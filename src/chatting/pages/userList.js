@@ -3,7 +3,8 @@ import TopLogo from "../../common/component/TopLogo";
 import Footer from "../../common/component/Footer";
 import { Link } from "react-router-dom";
 import ChattingService from "../service";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import UserItem from "./userItem";
 
 const UserList = () => {
   const [userList, setUserList] = useState([]);

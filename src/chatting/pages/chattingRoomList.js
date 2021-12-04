@@ -2,6 +2,9 @@ import { Button } from "@mui/material";
 import TopLogo from "../../common/component/TopLogo";
 import Footer from "../../common/component/Footer";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import ChattingService from "../service";
+import ChattingRoomItem from "./chattingRoomItem";
 
 const ChattingRoomList = () => {
   const [chattingRoomList, setChattingRoomList] = useState([]);
@@ -37,6 +40,7 @@ const ChattingRoomList = () => {
             <ChattingRoomItem
               id={chattingRoom.id}
               userId={chattingRoom.userId}
+              userNickname={chattingRoom.userNickname}
             />
           ))}
         </div>
