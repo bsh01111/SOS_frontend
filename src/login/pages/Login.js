@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import logo from "../../public/image/logo.png";
 import LoginService from "../service";
@@ -19,8 +19,8 @@ const Login = () => {
       return;
     }
     saveUserInfo({
-      userId: userInfo.userId,
-      userEmail: userInfo.userEmail,
+      userId: userInfo.id,
+      userEmail: userInfo.email,
     });
     pageHistory.push("/helpList");
   };
