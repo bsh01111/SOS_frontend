@@ -1,8 +1,8 @@
 import profile from "../../public/image/profile.jpeg";
-import { TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { useHistory } from "react-router-dom";
 
-const UserItem = ({ id, mainProfileUrl, userNickname }) => {
+const UserItem = ({ id, nickname, mainProfileUrl }) => {
   const pageHistory = useHistory();
   const onClickChattingButton = async () => {
     pageHistory.push(`/chattingRoom/${id}`);
@@ -11,22 +11,23 @@ const UserItem = ({ id, mainProfileUrl, userNickname }) => {
   return (
     <>
       <div style={styles.container}>
-        <div style={styles.profileDiv}>
+        <div style={styles.UserDiv}>
           <img style={styles.profileImage} src={mainProfileUrl || profile} />
           <TextField
-            id="nickName"
-            size="small"
+            id="nickname"
             variant="standard"
-            value={userNickname || ""}
-            style={styles.prifileNickname}
+            size="small"
+            value={nickname || ""}
+            style={styles.profileNickname}
           />
           <Button
+            variant="contained"
             size="small"
-            variant="standard"
-            value="메시지"
-            style={styles.chattingIcon}
+            style={styles.chattingButton}
             onClick={onClickChattingButton}
-          />
+          >
+            메시지
+          </Button>
         </div>
       </div>
     </>
@@ -35,10 +36,10 @@ const UserItem = ({ id, mainProfileUrl, userNickname }) => {
 
 const styles = {
   container: { border: "1px solid black", margin: 3 },
-  profileDiv: { height: 40 },
+  UserDiv: { height: 40 },
   profileImage: { width: 30, height: 30, marginTop: 5 },
-  prifileNickname: { marginTop: 5, marginLeft: 20, width: 60 },
-  chattingIcon: {
+  profileNickname: { marginTop: 5, marginLeft: 20, width: 80 },
+  chattingButton: {
     width: 20,
     height: 20,
     marginRight: 5,

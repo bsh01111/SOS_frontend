@@ -43,9 +43,8 @@ const UserList = () => {
           {userList.map((user) => (
             <UserItem
               id={user.id}
-              email={user.email}
-              name={user.name}
               nickname={user.nickname}
+              mainProfileUrl={user.mainProfileUrl}
             />
           ))}
         </div>
