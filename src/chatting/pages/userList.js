@@ -5,12 +5,14 @@ import { Link } from "react-router-dom";
 import ChattingService from "../service";
 import { useEffect, useState } from "react";
 import UserItem from "./userItem";
+import * as LocalStorage from "../../lib/localStorage";
 
 const UserList = () => {
   const [userList, setUserList] = useState([]);
 
   const getUserList = async () => {
-    const response = await ChattingService.findUserList();
+    const userId = LocalStorage.getItem("userId");
+    const response = await ChattingService.findUserList({ userId });
     setUserList(response.data.userList);
   };
 
@@ -43,6 +45,8 @@ const UserList = () => {
           {userList.map((user) => (
             <UserItem
               id={user.id}
+              userId={user.userId}
+              guestId={user.guestId}
               nickname={user.nickname}
               mainProfileUrl={user.mainProfileUrl}
             />

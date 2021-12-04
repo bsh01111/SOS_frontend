@@ -5,12 +5,14 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ChattingService from "../service";
 import ChattingRoomItem from "./chattingRoomItem";
+import * as LocalStorage from "../../lib/localStorage";
 
 const ChattingRoomList = () => {
   const [chattingRoomList, setChattingRoomList] = useState([]);
 
   const getChattingRoomList = async () => {
-    const response = await ChattingService.findChattingRoomList();
+    const id = LocalStorage.getItem("userId");
+    const response = await ChattingService.findChattingRoomList({ id });
     setChattingRoomList(response.data.chattingRoomList);
   };
 

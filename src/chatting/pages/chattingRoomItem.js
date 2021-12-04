@@ -1,5 +1,5 @@
 import profile from "../../public/image/profile.jpeg";
-import { Button, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import { useHistory } from "react-router-dom";
 
 const ChattingRoomItem = ({ id, nickname, mainProfileUrl }) => {
@@ -10,7 +10,7 @@ const ChattingRoomItem = ({ id, nickname, mainProfileUrl }) => {
 
   return (
     <>
-      <div style={styles.container}>
+      <div style={styles.container} onClick={onClickChattingButton}>
         <div style={styles.profileDiv}>
           <img style={styles.profileImage} src={mainProfileUrl || profile} />
           <TextField
@@ -19,13 +19,6 @@ const ChattingRoomItem = ({ id, nickname, mainProfileUrl }) => {
             variant="standard"
             value={nickname || ""}
             style={styles.profileNickname}
-          />
-          <Button
-            size="small"
-            variant="standard"
-            value="메시지"
-            style={styles.chattingButton}
-            onClick={onClickChattingButton}
           />
         </div>
       </div>
