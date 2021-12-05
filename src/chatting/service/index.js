@@ -3,18 +3,16 @@ import Request from "../../request";
 const ChattingService = () => {
   const self = {};
 
-  self.findChattingRoomList = async ({ id }) => {
+  self.findChattingRoomList = async ({ userId }) => {
     return await Request({
-      path: `/chattingRoom/list`,
-      params: { id },
+      path: `chattingRoom/list?id=${userId}`,
       method: "get",
     });
   };
 
-  self.findUserList = async ({ id }) => {
+  self.findUserList = async ({ userId }) => {
     return await Request({
-      path: "/user/list",
-      params: { id },
+      path: `/user/list?id=${userId}`,
       method: "get",
     });
   };

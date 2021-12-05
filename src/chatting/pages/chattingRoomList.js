@@ -11,8 +11,9 @@ const ChattingRoomList = () => {
   const [chattingRoomList, setChattingRoomList] = useState([]);
 
   const getChattingRoomList = async () => {
-    const id = LocalStorage.getItem("userId");
-    const response = await ChattingService.findChattingRoomList({ id });
+    const userId = LocalStorage.getItem("userId");
+    const response = await ChattingService.findChattingRoomList({ userId });
+    console.log(response.data.chattingRoomList);
     setChattingRoomList(response.data.chattingRoomList);
   };
 
@@ -42,7 +43,9 @@ const ChattingRoomList = () => {
             <ChattingRoomItem
               id={chattingRoom.id}
               userId={chattingRoom.userId}
+              guestId={chattingRoom.guestId}
               userNickname={chattingRoom.userNickname}
+              mainProfileUrl={chattingRoom.mainProfileUrl}
             />
           ))}
         </div>
