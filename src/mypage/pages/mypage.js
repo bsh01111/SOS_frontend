@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { TextField } from "@mui/material";
 import MyPageService from "../service";
+import PostItem from "./postitem";
 import * as LocalStorage from "../../lib/localStorage";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 
@@ -16,6 +17,8 @@ const Mypage = () => {
     userNickname: "",
     mainProfileUrl: "",
   });
+
+  const [postList, setPostList] = useState([]);
 
   const pageHistory = useHistory();
   const onClickEditProfile = async () => {
@@ -41,8 +44,18 @@ const Mypage = () => {
     }
   };
 
+  const getPostList = async () => {
+    const id = LocalStorage.getItem("userId");
+    const response = await MyPageService.findPostList({ id });
+    setPostList(response.data.postList);
+  };
+
   useEffect(() => {
     getUserProfile();
+  }, []);
+
+  useEffect(() => {
+    getPostList();
   }, []);
 
   return (
@@ -80,6 +93,18 @@ const Mypage = () => {
             onClick={onClickEditPost}
           />
         </div>
+        <div style={{ marginTop: 55, marginBottom: 70 }}>
+          <div>
+            {postList.map((post) => (
+              <PostItem
+                id={post.id}
+                userId={post.userId}
+                content={post.content}
+                imageUrl={post.imageUrl}
+              />
+            ))}
+          </div>
+        </div>
         <Footer />
       </div>
     </>
@@ -109,6 +134,7 @@ const styles = {
   postContainer: {
     border: "1px solid black",
     height: "50px",
+    marginTop: 50,
   },
   editPostIcon: {
     width: 20,

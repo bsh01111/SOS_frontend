@@ -10,6 +10,13 @@ const MypageService = () => {
     });
   };
 
+  self.findPostList = async ({ id }) => {
+    return await Request({
+      path: `/profile/post/${id}`,
+      method: "get",
+    });
+  };
+
   return self;
 };
 
