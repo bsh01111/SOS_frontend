@@ -2,7 +2,7 @@ import TopLogo from "../../common/component/TopLogo";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Button } from "@mui/material";
-import MypageService from "../service";
+import MyPageService from "../service";
 import * as LocalStorage from "../../lib/localStorage";
 
 const EditPost = () => {
@@ -20,10 +20,7 @@ const EditPost = () => {
   const pageHistory = useHistory();
   const onClickPostButton = async () => {
     if (!validPost()) return;
-
-    console.log(document.getElementById("content").placeholder);
-
-    const response = await MypageService.enrollPost(postInfo);
+    const response = await MyPageService.enrollPost(postInfo);
     pageHistory.push("/myPage");
   };
 

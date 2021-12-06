@@ -1,9 +1,13 @@
 import TopLogo from "../../common/component/TopLogo";
-import React, { useState } from "react";
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { TextField, Button } from "@mui/material";
+import MyPageService from "../service";
+import * as LocalStorage from "../../lib/localStorage";
 
 const EditProfile = () => {
   const [profileInfo, setProfileInfo] = useState({
+    userId: LocalStorage.getItem("userId"),
     career: "",
     elementrySchool: "",
     middleSchool: "",
@@ -18,6 +22,12 @@ const EditProfile = () => {
     setProfileInfo(profileInfo);
   };
 
+  const pageHistory = useHistory();
+  const onClickEditProfileButton = async () => {
+    const response = await MyPageService.updateProfile(profileInfo);
+    pageHistory.push("/myPage");
+  };
+
   return (
     <>
       <TopLogo />
@@ -26,7 +36,7 @@ const EditProfile = () => {
           <TextField
             id=""
             label="경력"
-            style={styles.inputStyle}
+            style={styles.firstInputStyle}
             variant="standard"
             onChange={(e) => setValue("career", e.target.value)}
           />
@@ -34,8 +44,8 @@ const EditProfile = () => {
         <div>
           <TextField
             id="elementrySchool"
-            label="초등학교"
-            style={styles.inputStyle}
+            label="초등학교 ex) OO초등학교"
+            style={styles.secondInputStyle}
             variant="standard"
             onChange={(e) => setValue("elementrySchool", e.target.value)}
           />
@@ -43,8 +53,8 @@ const EditProfile = () => {
         <div>
           <TextField
             id="middleSchool"
-            label="중학교"
-            style={styles.inputStyle}
+            label="중학교 ex) OO중학교"
+            style={styles.secondInputStyle}
             variant="standard"
             onChange={(e) => setValue("middleSchool", e.target.value)}
           />
@@ -52,8 +62,8 @@ const EditProfile = () => {
         <div>
           <TextField
             id="highSchool"
-            label="고등학교"
-            style={styles.inputStyle}
+            label="고등학교 ex) OO고등학교"
+            style={styles.secondInputStyle}
             variant="standard"
             onChange={(e) => setValue("highSchool", e.target.value)}
           />
@@ -61,8 +71,8 @@ const EditProfile = () => {
         <div>
           <TextField
             id="university"
-            label="대학교"
-            style={styles.inputStyle}
+            label="대학교 ex) OO초등학교"
+            style={styles.secondInputStyle}
             variant="standard"
             onChange={(e) => setValue("university", e.target.value)}
           />
@@ -70,8 +80,8 @@ const EditProfile = () => {
         <div>
           <TextField
             id="originPlace"
-            label="출신지"
-            style={styles.inputStyle}
+            label="출신지 ex) OOOO도 OO시"
+            style={styles.secondInputStyle}
             variant="standard"
             onChange={(e) => setValue("originPlace", e.target.value)}
           />
@@ -79,23 +89,34 @@ const EditProfile = () => {
         <div>
           <TextField
             id="residence"
-            label="거주지"
-            style={styles.inputStyle}
+            label="거주지 ex) OOOO도 OO시"
+            style={styles.secondInputStyle}
             variant="standard"
             onChange={(e) => setValue("residence", e.target.value)}
           />
         </div>
-        <Button>수정</Button>
+        <Button
+          variant="contained"
+          onClick={onClickEditProfileButton}
+          style={styles.editProfileButton}
+        >
+          수정
+        </Button>
       </div>
     </>
   );
 };
 
 const styles = {
-  inputStyle: {
+  firstInputStyle: {
     marginTop: 55,
     width: 300,
   },
+  secondInputStyle: {
+    marginTop: 20,
+    width: 300,
+  },
+  editProfileButton: { marginTop: 10, width: 30, height: 30 },
 };
 
 export default EditProfile;

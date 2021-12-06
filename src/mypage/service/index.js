@@ -25,6 +25,31 @@ const MypageService = () => {
     });
   };
 
+  self.updateProfile = async ({
+    userId,
+    career,
+    elementrySchool,
+    middleSchool,
+    highSchool,
+    university,
+    originPlace,
+    residence,
+  }) => {
+    return await Request({
+      path: `/profile/${userId}`,
+      method: "put",
+      data: {
+        career,
+        elementrySchool,
+        middleSchool,
+        highSchool,
+        university,
+        originPlace,
+        residence,
+      },
+    });
+  };
+
   return self;
 };
 
