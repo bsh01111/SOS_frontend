@@ -1,30 +1,71 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom"; //'react-router-dom'에서 제공하는 {Link}를 import
+import TopLogo from "../../common/component/TopLogo";
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Button } from "@mui/material";
+import MyPageService from "../service";
+import * as LocalStorage from "../../lib/localStorage";
 
 const EditPost = () => {
-  const contentOnChange = (e) => {
-    const content = e.target.value;
-    setContent(content);
+  const [postInfo, setPostInfo] = useState({
+    userId: LocalStorage.getItem("userId"),
+    content: "",
+    imageUrl: "",
+  });
+
+  const setValue = (key, value) => {
+    postInfo[key] = value;
+    setPostInfo(postInfo);
+  };
+
+  const pageHistory = useHistory();
+  const onClickPostButton = async () => {
+    if (!validPost()) return;
+    const response = await MyPageService.enrollPost(postInfo);
+    pageHistory.push("/myPage");
+  };
+
+  const validPost = () => {
+    const { userId, content, imageUrl } = postInfo;
+
+    if (!content) {
+      alert("내용이 입력되지 않았습니다.");
+      return false;
+    }
+    return true;
   };
 
   return (
     <>
-      <div style={{ textAlign: "center" }}>
+      <TopLogo />
+      <div style={{ marginTop: 55, marginBottom: 70 }}>
         <div>
           마이페이지
-          <Button onClick={onclickPostButton} style={styles.postButton}>
+          <Button
+            variant="contained"
+            onClick={onClickPostButton}
+            style={styles.postButton}
+          >
             Post
           </Button>
         </div>
         <div>
-          <input
+          <textarea
+            id="content"
             name="content"
             placeholder="글 입력"
-            style={styles.inputStyle}
-            value={content}
-            onChange={contentOnChange}
-          ></input>
+            style={styles.inputContentStyle}
+            onChange={(e) => setValue("content", e.target.value)}
+          />
+        </div>
+        <div>
+          <input
+            type="file"
+            id="image"
+            name="사진 업로드"
+            accept="image/png, image/jpeg"
+            style={styles.uploadImageStyle}
+            onChange={(e) => setValue("imageUrl", e.target.value)}
+          />
         </div>
       </div>
     </>
@@ -32,10 +73,24 @@ const EditPost = () => {
 };
 
 const styles = {
-  inputStyle: {
-    marginLeft: 10,
+  postButton: {
+    marginTop: 5,
+    marginLeft: 200,
+    marginRight: 10,
     height: 30,
-    weight: 200,
+    width: 30,
+  },
+  inputContentStyle: {
+    height: 300,
+    width: 200,
+    marginLeft: 5,
+    marginTop: 5,
+  },
+  uploadImageStyle: {
+    height: 30,
+    weight: 30,
+    marginTop: 5,
+    marginLeft: 5,
   },
 };
 

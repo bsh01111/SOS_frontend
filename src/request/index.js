@@ -15,7 +15,7 @@ const Request = async ({
     } else if (method === "post") {
       response = await axios.post(path, data, headers);
     } else if (method === "put") {
-      response = await axios.post(path, data, headers);
+      response = await axios.put(path, data, headers);
     } else if (method === "delete") {
       response = await axios.post(path, { data }, headers);
     }
