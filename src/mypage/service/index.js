@@ -17,6 +17,14 @@ const MypageService = () => {
     });
   };
 
+  self.enrollPost = async ({ userId, content, imageUrl }) => {
+    return await Request({
+      path: "/profile/post",
+      method: "post",
+      data: { userId, content, imageUrl },
+    });
+  };
+
   return self;
 };
 
