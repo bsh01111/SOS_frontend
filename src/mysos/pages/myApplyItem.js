@@ -22,7 +22,7 @@ const MyApplyItem = ({
   const onClickCancelButton = async () => {
     try {
       await MySosService.cancelSosApply({ sosId, userId });
-      alert("신청 성공!");
+      alert("취소가 완료되었습니다.");
       window.location.replace("/myApply");
     } catch (e) {
       alert("error!");
@@ -81,7 +81,7 @@ const styles = {
   container: { border: "1px solid black", margin: 3 },
   profileDiv: { height: 40 },
   profileImage: { width: 30, height: 30, marginTop: 5 },
-  profileNickname: { marginTop: 5, marginLeft: 20, width: 60 },
+  profileNickname: { marginTop: 5, marginLeft: 20, width: 80 },
   profileIcon: {
     width: 20,
     height: 20,

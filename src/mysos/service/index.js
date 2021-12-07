@@ -10,6 +10,13 @@ const MySosService = () => {
     });
   };
 
+  self.findApplyList = async ({ id }) => {
+    return await Request({
+      path: `sos/myHelp?sosId=${id}`,
+      method: "get",
+    });
+  };
+
   self.findMyApplyList = async ({ id }) => {
     return await Request({
       path: `sos/myApply/${id}`,

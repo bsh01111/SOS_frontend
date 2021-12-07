@@ -36,12 +36,9 @@ const MyHelp = () => {
           {myHelpList.map((myHelp) => (
             <MyHelpItem
               id={myHelp.id}
-              mainProfileUrl={myHelp.mainProfileUrl}
-              nickname={myHelp.userNickname}
               content={myHelp.content}
               location={myHelp.location}
               cost={myHelp.cost}
-              mediaUrl={myHelp.mediaUrl}
             />
           ))}
         </div>

@@ -10,7 +10,7 @@ import HelpDetail from "./helpdetail/pages/HelpDetail";
 import Mypage from "./mypage/pages/mypage";
 import EditProfile from "./mypage/pages/editprofile";
 import EditPost from "./mypage/pages/editpost";
-// import MyHelp from "./mysos/pages/myHelp";
+import MyHelp from "./mysos/pages/myHelp";
 import MyApply from "./mysos/pages/myApply";
 // import Main from "./pages/Main/Main";
 
@@ -29,6 +29,7 @@ class Routes extends React.Component {
           <Route exact path="/userList" component={UserList} />
           <Route exact path="/editPost" component={EditPost} />
           <Route exact path="/myApply" component={MyApply} />
+          <Route exact path="/myHelp" component={MyHelp} />
           {/* <Route exact path="/signup" component={Signup} />
           <Route exact path="/main" component={Main} /> */}
         </Switch>

@@ -1,40 +1,23 @@
-import profile from "../../public/image/profile.jpeg";
-import help from "../../public/image/help.png";
 import { TextField } from "@mui/material";
-import { useHistory } from "react-router-dom";
-import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import { useEffect, useState } from "react";
+import MySosService from "../service";
+import ApplyItem from "./applyItem";
 
-const MyHelpItem = ({
-  id,
-  mainProfileUrl,
-  nickname,
-  content,
-  location,
-  cost,
-  mediaUrl,
-}) => {
-  const pageHistory = useHistory();
-  const onClickDetailButton = async () => {
-    pageHistory.push(`/helpDetail/${id}`);
+const MyHelpItem = ({ id, content, location, cost }) => {
+  const [applyList, setApplyList] = useState([]);
+
+  const getApplyList = async () => {
+    const response = await MySosService.findApplyList({ id });
+    setApplyList(response.data.applyList);
   };
+
+  useEffect(() => {
+    getApplyList();
+  }, []);
 
   return (
     <>
       <div style={styles.container}>
-        <div style={styles.profileDiv}>
-          <img style={styles.profileImage} src={mainProfileUrl || profile} />
-          <TextField
-            id="nickName"
-            size="small"
-            variant="standard"
-            value={nickname || ""}
-            style={styles.prifileNickname}
-          />
-          <KeyboardDoubleArrowRightIcon
-            style={styles.profileIcon}
-            onClick={onClickDetailButton}
-          />
-        </div>
         <div style={styles.helpDiv}>
           <TextField
             id="helpContent"
@@ -51,12 +34,16 @@ const MyHelpItem = ({
             ></TextField>
             <TextField id="cost" size="small" value={cost || 0}></TextField>
           </div>
-        </div>
-        <div style={styles.helpImageDiv}>
-          <img
-            style={{ width: "100%", height: "100%" }}
-            src={mediaUrl || help}
-          />
+          <div>
+            {applyList.map((apply) => (
+              <ApplyItem
+                id={apply.id}
+                nickname={apply.nickname}
+                url={apply.url}
+                status={apply.status}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </>
@@ -64,17 +51,7 @@ const MyHelpItem = ({
 };
 
 const styles = {
-  container: { border: "1px solid black", margin: 3 },
-  profileDiv: { height: 40 },
-  profileImage: { width: 30, height: 30, marginTop: 5 },
-  prifileNickname: { marginTop: 5, marginLeft: 20, width: 60 },
-  profileIcon: {
-    width: 20,
-    height: 20,
-    marginRight: 5,
-    float: "right",
-    marginTop: 10,
-  },
+  container: { border: "1px solid black" },
   helpDiv: {
     border: "1px solid black",
     height: 80,
@@ -85,11 +62,6 @@ const styles = {
   helpInfoDiv: {
     width: "34%",
     float: "right",
-  },
-  helpImageDiv: {
-    border: "1px solid black",
-    height: 240,
-    marginTop: 5,
   },
 };
 
