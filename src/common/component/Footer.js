@@ -40,14 +40,18 @@ const Footer = () => {
 
 const styles = {
   focusButton: {
-    height: "99%",
+    border: "1px solid black",
+    height: "95%",
     width: "24%",
     margin: "0.5%",
+    color: "black",
   },
   button: {
-    height: "99%",
+    border: "1px solid black",
+    height: "95%",
     width: "24%",
     margin: "0.5%",
+    color: "black",
   },
 };
 
