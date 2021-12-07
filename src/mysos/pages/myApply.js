@@ -3,45 +3,45 @@ import Footer from "../../common/component/Footer";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
-import MyHelpItem from "./myHelpItem";
+import MyApplyItem from "./myApplyItem";
 import MySosService from "../service";
 import * as LocalStorage from "../../lib/localStorage";
 
-const MyHelp = () => {
-  const [myHelpList, setMyHelpList] = useState([]);
+const MyApply = () => {
+  const [myApplyList, setMyApplyList] = useState([]);
 
-  const getMyHelpList = async () => {
+  const getMyApplyList = async () => {
     const id = LocalStorage.getItem("userId");
-    const response = await MySosService.findMyHelpList({ id });
-    setMyHelpList(response.data.sosList);
+    const response = await MySosService.findMyApplyList({ id });
+    setMyApplyList(response.data.applyList);
   };
 
   useEffect(() => {
-    getMyHelpList();
+    getMyApplyList();
   }, []);
-
   return (
     <>
       <div>
         <TopLogo />
         <div style={{ marginTop: 55, textAlign: "center", width: "100%" }}>
-          <Button variant="contained" style={styles.firstButton}>
+          <Button component={Link} to={"/myHelp"} style={styles.firstButton}>
             내 요청
           </Button>
-          <Button component={Link} to={"/myApply"} style={styles.secondButton}>
+          <Button variant="contained" style={styles.secondButton}>
             내 도움
           </Button>
         </div>
         <div>
-          {myHelpList.map((myHelp) => (
-            <MyHelpItem
-              id={myHelp.id}
-              mainProfileUrl={myHelp.mainProfileUrl}
-              nickname={myHelp.userNickname}
-              content={myHelp.content}
-              location={myHelp.location}
-              cost={myHelp.cost}
-              mediaUrl={myHelp.mediaUrl}
+          {myApplyList.map((myApply) => (
+            <MyApplyItem
+              sosId={myApply.sosId}
+              userId={myApply.userId}
+              nickname={myApply.userNickname}
+              mainProfileUrl={myApply.mainProfileUrl}
+              content={myApply.content}
+              location={myApply.location}
+              cost={myApply.cost}
+              status={myApply.status}
             />
           ))}
         </div>
@@ -64,4 +64,4 @@ const styles = {
   },
 };
 
-export default MyHelp;
+export default MyApply;

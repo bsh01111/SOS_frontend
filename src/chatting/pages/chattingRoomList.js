@@ -13,7 +13,6 @@ const ChattingRoomList = () => {
   const getChattingRoomList = async () => {
     const userId = LocalStorage.getItem("userId");
     const response = await ChattingService.findChattingRoomList({ userId });
-    console.log(response.data.chattingRoomList);
     setChattingRoomList(response.data.chattingRoomList);
   };
 
