@@ -111,7 +111,7 @@ const HelpDetail = (props) => {
             </Button>
           </div>
         </div>
-        <Footer />
+        <Footer sequence={0} />
       </div>
     </>
   );

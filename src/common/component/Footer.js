@@ -1,6 +1,8 @@
 import { Button } from "@mui/material";
+import { useHistory } from "react-router-dom";
 
-const Footer = () => {
+const Footer = ({ sequence = 0 }) => {
+  const pageHistory = useHistory();
   return (
     <>
       <div
@@ -14,22 +16,37 @@ const Footer = () => {
         }}
       >
         <div style={{ height: "100%" }}>
-          <Button variant="outlined" style={styles.focusButton}>
+          <Button
+            variant="outlined"
+            style={sequence === 0 ? styles.focusButton : styles.button}
+            onClick={() => {
+              pageHistory.push(`/helpList`);
+            }}
+          >
             SOS
             <br />
             목록
           </Button>
-          <Button variant="outlined" style={styles.button}>
+          <Button
+            variant="outlined"
+            style={sequence === 1 ? styles.focusButton : styles.button}
+          >
             마이
             <br />
             SOS
           </Button>
-          <Button variant="outlined" style={styles.button}>
+          <Button
+            variant="outlined"
+            style={sequence === 2 ? styles.focusButton : styles.button}
+          >
             마이
             <br />
             페이지
           </Button>
-          <Button variant="outlined" style={styles.button}>
+          <Button
+            variant="outlined"
+            style={sequence === 3 ? styles.focusButton : styles.button}
+          >
             메세지
           </Button>
         </div>
@@ -40,11 +57,12 @@ const Footer = () => {
 
 const styles = {
   focusButton: {
-    border: "1px solid black",
+    border: "1px solid white",
     height: "95%",
     width: "24%",
     margin: "0.5%",
-    color: "black",
+    color: "white",
+    background: "black",
   },
   button: {
     border: "1px solid black",
