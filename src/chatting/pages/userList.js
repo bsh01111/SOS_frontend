@@ -35,7 +35,7 @@ const UserList = () => {
             />
           ))}
         </div>
-        <Footer />
+        <Footer sequence={3} />
       </div>
     </>
   );

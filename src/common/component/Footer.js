@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import { useHistory } from "react-router-dom";
 
-const Footer = ({ sequence = 0 }) => {
+const Footer = ({ sequence }) => {
   const pageHistory = useHistory();
   return (
     <>
@@ -30,6 +30,9 @@ const Footer = ({ sequence = 0 }) => {
           <Button
             variant="outlined"
             style={sequence === 1 ? styles.focusButton : styles.button}
+            onClick={() => {
+              pageHistory.push(`/myHelp`);
+            }}
           >
             마이
             <br />
@@ -38,6 +41,9 @@ const Footer = ({ sequence = 0 }) => {
           <Button
             variant="outlined"
             style={sequence === 2 ? styles.focusButton : styles.button}
+            onClick={() => {
+              pageHistory.push(`/myPage`);
+            }}
           >
             마이
             <br />
@@ -46,6 +52,9 @@ const Footer = ({ sequence = 0 }) => {
           <Button
             variant="outlined"
             style={sequence === 3 ? styles.focusButton : styles.button}
+            onClick={() => {
+              pageHistory.push(`/chattingRoomList`);
+            }}
           >
             메세지
           </Button>

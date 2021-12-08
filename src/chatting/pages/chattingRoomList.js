@@ -35,7 +35,7 @@ const ChattingRoomList = () => {
             />
           ))}
         </div>
-        <Footer />
+        <Footer sequence={3} />
       </div>
     </>
   );

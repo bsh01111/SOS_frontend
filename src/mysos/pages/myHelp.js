@@ -34,7 +34,7 @@ const MyHelp = () => {
             />
           ))}
         </div>
-        <Footer />
+        <Footer sequence={1} />
       </div>
     </>
   );

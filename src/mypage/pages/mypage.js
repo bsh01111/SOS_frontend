@@ -105,7 +105,7 @@ const Mypage = () => {
             ))}
           </div>
         </div>
-        <Footer />
+        <Footer sequence={2} />
       </div>
     </>
   );
