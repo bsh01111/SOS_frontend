@@ -1,45 +1,39 @@
-import { TextField } from "@mui/material";
 import TopLogo from "../../common/component/TopLogo";
 import Footer from "../../common/component/Footer";
+import { useEffect, useState } from "react";
+import Header from "../common/component/header";
+import MyHelpItem from "./myHelpItem";
+import MySosService from "../service";
+import * as LocalStorage from "../../lib/localStorage";
 
-const HelpList = () => {
+const MyHelp = () => {
+  const [myHelpList, setMyHelpList] = useState([]);
+
+  const getMyHelpList = async () => {
+    const id = LocalStorage.getItem("userId");
+    const response = await MySosService.findMyHelpList({ id });
+    setMyHelpList(response.data.sosList);
+  };
+
+  useEffect(() => {
+    getMyHelpList();
+  }, []);
+
   return (
     <>
       <div>
         <TopLogo />
-        <div style={{ marginTop: 55, marginBottom: 70 }}>
+        <Header sequence={0} />
+        <div>
           <div>
-            <TextField id="email" label="이메일1" variant="outlined" />
-          </div>
-          <div>
-            <TextField id="email" label="이메일2" variant="outlined" />
-          </div>
-          <div>
-            <TextField id="email" label="이메일" variant="outlined" />
-          </div>
-          <div>
-            <TextField id="email" label="이메일" variant="outlined" />
-          </div>
-          <div>
-            <TextField id="email" label="이메일" variant="outlined" />
-          </div>
-          <div>
-            <TextField id="email" label="이메일" variant="outlined" />
-          </div>
-          <div>
-            <TextField id="email" label="이메일" variant="outlined" />
-          </div>
-          <div>
-            <TextField id="email" label="이메일" variant="outlined" />
-          </div>
-          <div>
-            <TextField id="email" label="이메일" variant="outlined" />
-          </div>
-          <div>
-            <TextField id="email" label="이메일" variant="outlined" />
-          </div>
-          <div>
-            <TextField id="email" label="이메일" variant="outlined" />
+            {myHelpList.map((myHelp) => (
+              <MyHelpItem
+                id={myHelp.id}
+                content={myHelp.content}
+                location={myHelp.location}
+                cost={myHelp.cost}
+              />
+            ))}
           </div>
         </div>
         <Footer />
@@ -48,4 +42,4 @@ const HelpList = () => {
   );
 };
 
-export default HelpList;
+export default MyHelp;
