@@ -1,8 +1,7 @@
 import TopLogo from "../../common/component/TopLogo";
 import Footer from "../../common/component/Footer";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { Button } from "@mui/material";
+import Header from "../common/component/header";
 import MyHelpItem from "./myHelpItem";
 import MySosService from "../service";
 import * as LocalStorage from "../../lib/localStorage";
@@ -24,14 +23,7 @@ const MyHelp = () => {
     <>
       <div>
         <TopLogo />
-        <div style={{ marginTop: 55, textAlign: "center", width: "100%" }}>
-          <Button variant="contained" style={styles.firstButton}>
-            내 요청
-          </Button>
-          <Button component={Link} to={"/myApply"} style={styles.secondButton}>
-            내 도움
-          </Button>
-        </div>
+        <Header sequence={0} />
         <div>
           {myHelpList.map((myHelp) => (
             <MyHelpItem
@@ -46,19 +38,6 @@ const MyHelp = () => {
       </div>
     </>
   );
-};
-
-const styles = {
-  firstButton: {
-    height: "99%",
-    width: "49%",
-    margin: "0.5%",
-  },
-  secondButton: {
-    height: "99%",
-    width: "49%",
-    margin: "0.5%",
-  },
 };
 
 export default MyHelp;
