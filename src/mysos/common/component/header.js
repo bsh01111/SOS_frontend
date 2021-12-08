@@ -26,7 +26,6 @@ const Header = ({ sequence }) => {
           내 도움
         </Button>
       </div>
-      ;
     </>
   );
 };

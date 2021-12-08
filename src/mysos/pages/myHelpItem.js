@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import MySosService from "../service";
 import ApplyItem from "./applyItem";
 
-const MyHelpItem = ({ id, content, location, cost }) => {
+const MyHelpItem = ({ id, content, location, cost, status }) => {
   const [applyList, setApplyList] = useState([]);
 
   const getApplyList = async () => {
@@ -37,10 +37,11 @@ const MyHelpItem = ({ id, content, location, cost }) => {
           <div>
             {applyList.map((apply) => (
               <ApplyItem
-                id={apply.id}
+                sosId={id}
+                userId={apply.id}
                 nickname={apply.nickname}
                 url={apply.url}
-                status={apply.status}
+                status={status}
               />
             ))}
           </div>
@@ -51,7 +52,7 @@ const MyHelpItem = ({ id, content, location, cost }) => {
 };
 
 const styles = {
-  container: { border: "1px solid black" },
+  container: { border: "1px solid black", marginTop: 50 },
   helpDiv: {
     border: "1px solid black",
     height: 80,

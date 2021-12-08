@@ -12,8 +12,22 @@ const MySosService = () => {
 
   self.findApplyList = async ({ id }) => {
     return await Request({
-      path: `sos/myHelp?sosId=${id}`,
+      path: `sos/userApply/${id}`,
       method: "get",
+    });
+  };
+
+  self.acceptHelp = async ({ sosId, userId }) => {
+    return await Request({
+      path: `sos/myApply/accept?sosId=${sosId}&userId=${userId}`,
+      method: "put",
+    });
+  };
+
+  self.refuseHelp = async ({ sosId, userId }) => {
+    return await Request({
+      path: `sos/myHelp/refuse?sosId=${sosId}&userId=${userId}`,
+      method: "put",
     });
   };
 
@@ -26,7 +40,7 @@ const MySosService = () => {
 
   self.cancelSosApply = async ({ sosId, userId }) => {
     return await Request({
-      path: `sos/myApply?sosId=${sosId}&userId=${userId}`,
+      path: `sos/myApply/cancel?sosId=${sosId}&userId=${userId}`,
       method: "put",
     });
   };

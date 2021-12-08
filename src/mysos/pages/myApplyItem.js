@@ -78,7 +78,7 @@ const MyApplyItem = ({
 };
 
 const styles = {
-  container: { border: "1px solid black", margin: 3 },
+  container: { border: "1px solid black", margin: 10 },
   profileDiv: { height: 40 },
   profileImage: { width: 30, height: 30, marginTop: 5 },
   profileNickname: { marginTop: 5, marginLeft: 20, width: 80 },
