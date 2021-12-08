@@ -1,5 +1,5 @@
 import { Divider } from "@mui/material";
-import logo from "../../public/image/logo.png";
+import logo from "../../public/image/logo.jpg";
 
 const TopLogo = () => {
   return (

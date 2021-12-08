@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import logo from "../../public/image/logo.png";
+import logo from "../../public/image/logo.jpg";
 import LoginService from "../service";
 import { Button } from "@mui/material";
 import * as LocalStorage from "../../lib/localStorage";
@@ -43,8 +43,8 @@ const Login = () => {
   return (
     <>
       <div style={{ textAlign: "center" }}>
-        <div style={{ margin: 30 }}>
-          <img src={logo} />
+        <div style={{ margin: 10, marginTop: 50 }}>
+          <img style={{ width: 100, width: 100 }} src={logo} />
         </div>
         <div>
           <div>
