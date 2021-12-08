@@ -41,7 +41,7 @@ const MyHelpItem = ({ id, content, location, cost, status }) => {
                 userId={apply.id}
                 nickname={apply.nickname}
                 url={apply.url}
-                status={status}
+                status={apply.status}
               />
             ))}
           </div>

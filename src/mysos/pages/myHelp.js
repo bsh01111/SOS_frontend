@@ -25,16 +25,14 @@ const MyHelp = () => {
         <TopLogo />
         <Header sequence={0} />
         <div>
-          <div>
-            {myHelpList.map((myHelp) => (
-              <MyHelpItem
-                id={myHelp.id}
-                content={myHelp.content}
-                location={myHelp.location}
-                cost={myHelp.cost}
-              />
-            ))}
-          </div>
+          {myHelpList.map((myHelp) => (
+            <MyHelpItem
+              id={myHelp.id}
+              content={myHelp.content}
+              location={myHelp.location}
+              cost={myHelp.cost}
+            />
+          ))}
         </div>
         <Footer />
       </div>

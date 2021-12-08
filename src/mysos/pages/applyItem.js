@@ -3,10 +3,16 @@ import { Button, TextField } from "@mui/material";
 import MySosService from "../service";
 
 const ApplyItem = ({ sosId, userId, nickname, url, status }) => {
+  let statusCode = {
+    WAIT: "대기",
+    ACCEPT: "수락",
+    REFUSE: "거절",
+  };
+
   const onClickAcceptButton = async () => {
     if (!checkStatus()) return;
     try {
-      await MySosService.refuseHelp({ sosId, userId });
+      await MySosService.acceptHelp({ sosId, userId });
       alert("수락 완료!");
       window.location.replace("/myHelp");
     } catch (e) {
@@ -26,10 +32,10 @@ const ApplyItem = ({ sosId, userId, nickname, url, status }) => {
   };
 
   const checkStatus = () => {
-    if (status === "ACCEPT") {
+    if (status == "ACCEPT") {
       alert("이미 수락한 도움입니다.");
       return false;
-    } else if (status === "REFUSE") {
+    } else if (status == "REFUSE") {
       alert("이미 거절한 도움입니다.");
       return false;
     }
@@ -50,7 +56,11 @@ const ApplyItem = ({ sosId, userId, nickname, url, status }) => {
           />
           <Button
             variant="contained"
-            style={styles.acceptButton}
+            style={
+              statusCode[status] == "수락"
+                ? styles.foucsRefuseButton
+                : styles.acceptButton
+            }
             onClick={onClickAcceptButton}
           >
             수락
@@ -58,7 +68,7 @@ const ApplyItem = ({ sosId, userId, nickname, url, status }) => {
           <Button
             variant="contained"
             style={
-              status === "REFUSE"
+              statusCode[status] == "거절"
                 ? styles.foucsRefuseButton
                 : styles.refuseButton
             }
@@ -77,6 +87,14 @@ const styles = {
   profileDiv: { height: 40 },
   profileImage: { width: 30, height: 30, marginTop: 5 },
   profileNickname: { marginTop: 5, marginLeft: 20, width: 80 },
+  foucsAcceptButton: {
+    width: 50,
+    height: 30,
+    marginLeft: 50,
+    color: "white",
+    background: "black",
+    marginBottom: 20,
+  },
   acceptButton: {
     width: 50,
     height: 30,
