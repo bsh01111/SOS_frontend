@@ -5,13 +5,13 @@ const PostItem = ({ id, userId, content, imageUrl }) => {
   return (
     <>
       <div style={styles.container}>
+        <div style={styles.postImage}>
+          <img
+            style={{ width: "100%", height: "100%" }}
+            src={imageUrl || noImage}
+          />
+        </div>
         <div style={styles.postDiv}>
-          <div style={styles.postImage}>
-            <img
-              style={{ width: "100%", height: "100%" }}
-              src={imageUrl || noImage}
-            />
-          </div>
           <TextField
             id="content"
             size="medium"
@@ -26,7 +26,7 @@ const PostItem = ({ id, userId, content, imageUrl }) => {
 };
 
 const styles = {
-  container: { border: "1px solid black", marginTop: 10, height: 150 },
+  container: { border: "1px solid black", marginTop: 10 },
   postDiv: { height: 350 },
   postImage: {
     height: 250,
@@ -34,7 +34,7 @@ const styles = {
   },
   postDiv: {
     border: "1px solid black",
-    height: 100,
+    height: 80,
   },
   postContent: {
     width: "60%",
