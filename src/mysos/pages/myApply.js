@@ -23,19 +23,21 @@ const MyApply = () => {
       <div>
         <TopLogo />
         <Header sequence={1} />
-        <div>
-          {myApplyList.map((myApply) => (
-            <MyApplyItem
-              sosId={myApply.sosId}
-              userId={myApply.userId}
-              nickname={myApply.userNickname}
-              mainProfileUrl={myApply.mainProfileUrl}
-              content={myApply.content}
-              location={myApply.location}
-              cost={myApply.cost}
-              status={myApply.status}
-            />
-          ))}
+        <div style={{ marginTop: 55, marginBottom: 70 }}>
+          <div>
+            {myApplyList.map((myApply) => (
+              <MyApplyItem
+                sosId={myApply.sosId}
+                userId={myApply.userId}
+                nickname={myApply.userNickname}
+                mainProfileUrl={myApply.mainProfileUrl}
+                content={myApply.content}
+                location={myApply.location}
+                cost={myApply.cost}
+                status={myApply.status}
+              />
+            ))}
+          </div>
         </div>
         <Footer sequence={1} />
       </div>
