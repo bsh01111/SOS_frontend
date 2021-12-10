@@ -24,10 +24,10 @@ const PostItem = ({ id, userId, content, imageUrl }) => {
 };
 
 const styles = {
-  container: { border: "1px solid black", marginTop: 10, height: 700 },
-  postDiv: { height: 500 },
+  container: { border: "1px solid black", marginTop: 10, height: 150 },
+  postDiv: { height: 800 },
   postImage: {
-    height: 400,
+    height: 700,
     marginTop: 5,
   },
   postDiv: {
