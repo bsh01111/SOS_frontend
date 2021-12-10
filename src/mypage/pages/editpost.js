@@ -1,9 +1,11 @@
 import TopLogo from "../../common/component/TopLogo";
+import Footer from "../../common/component/Footer";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Button } from "@mui/material";
 import MyPageService from "../service";
 import * as LocalStorage from "../../lib/localStorage";
+import { styled } from "@mui/material/styles";
 
 const EditPost = () => {
   const [postInfo, setPostInfo] = useState({
@@ -34,63 +36,72 @@ const EditPost = () => {
     return true;
   };
 
+  const Input = styled("input")({
+    display: "none",
+  });
+
   return (
     <>
       <TopLogo />
-      <div style={{ marginTop: 55, marginBottom: 70 }}>
-        <div>
-          마이페이지
-          <Button
-            variant="contained"
-            onClick={onClickPostButton}
-            style={styles.postButton}
-          >
-            Post
-          </Button>
-        </div>
+      <div style={{ marginTop: 55, marginBottom: 70, marginLeft: 10 }}>
+        마이페이지
+        <Button
+          variant="contained"
+          onClick={onClickPostButton}
+          style={styles.postButton}
+        >
+          Post
+        </Button>
         <div>
           <textarea
             id="content"
             name="content"
-            placeholder="글 입력"
             style={styles.inputContentStyle}
             onChange={(e) => setValue("content", e.target.value)}
           />
         </div>
-        <div>
-          <input
+        <label htmlFor="contained-button-file">
+          <Input
+            accept="image/*"
+            id="contained-button-file"
+            multiple
             type="file"
-            id="image"
-            name="사진 업로드"
-            accept="image/png, image/jpeg"
-            style={styles.uploadImageStyle}
-            onChange={(e) => setValue("imageUrl", e.target.value)}
           />
-        </div>
+          <Button
+            variant="contained"
+            component="span"
+            style={styles.uploadButton}
+            onChange={(e) => setValue("imageUrl", e.target.value)}
+          >
+            사진/동영상
+          </Button>
+        </label>
       </div>
+      <Footer sequence={2} />
     </>
   );
 };
 
 const styles = {
+  container: {
+    border: "1px solid while",
+  },
   postButton: {
     marginTop: 5,
     marginLeft: 200,
     marginRight: 10,
     height: 30,
     width: 30,
+    color: "white",
+    background: "black",
   },
   inputContentStyle: {
-    height: 300,
-    width: 200,
-    marginLeft: 5,
-    marginTop: 5,
+    height: 350,
+    width: 250,
   },
-  uploadImageStyle: {
-    height: 30,
-    weight: 30,
-    marginTop: 5,
-    marginLeft: 5,
+  uploadButton: {
+    color: "white",
+    background: "black",
   },
 };
 

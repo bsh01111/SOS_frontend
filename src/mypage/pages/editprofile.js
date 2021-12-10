@@ -71,7 +71,7 @@ const EditProfile = () => {
         <div>
           <TextField
             id="university"
-            label="대학교 ex) OO초등학교"
+            label="대학교 ex) OO대학교"
             style={styles.secondInputStyle}
             variant="standard"
             onChange={(e) => setValue("university", e.target.value)}
@@ -116,7 +116,13 @@ const styles = {
     marginTop: 20,
     width: 300,
   },
-  editProfileButton: { marginTop: 10, width: 30, height: 30 },
+  editProfileButton: {
+    marginTop: 10,
+    width: 30,
+    height: 30,
+    color: "white",
+    background: "black",
+  },
 };
 
 export default EditProfile;
