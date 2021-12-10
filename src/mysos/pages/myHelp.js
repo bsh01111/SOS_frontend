@@ -24,7 +24,7 @@ const MyHelp = () => {
       <div>
         <TopLogo />
         <Header sequence={0} />
-        <div style={{ marginTop: 55, marginBottom: 70 }}>
+        <div style={{ marginBottom: 70 }}>
           <div>
             {myHelpList.map((myHelp) => (
               <MyHelpItem

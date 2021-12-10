@@ -23,7 +23,7 @@ const MyApply = () => {
       <div>
         <TopLogo />
         <Header sequence={1} />
-        <div style={{ marginTop: 55, marginBottom: 70 }}>
+        <div style={{ marginBottom: 85 }}>
           <div>
             {myApplyList.map((myApply) => (
               <MyApplyItem
