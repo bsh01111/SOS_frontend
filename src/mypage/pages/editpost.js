@@ -73,7 +73,7 @@ const EditPost = () => {
             style={styles.uploadButton}
             onChange={(e) => setValue("imageUrl", e.target.value)}
           >
-            사진/동영상
+            사진 업로드
           </Button>
         </label>
       </div>

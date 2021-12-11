@@ -47,6 +47,7 @@ const Mypage = () => {
   const getPostList = async () => {
     const id = LocalStorage.getItem("userId");
     const response = await MyPageService.findPostList({ id });
+    console.log(response.data.postList);
     setPostList(response.data.postList);
   };
 
@@ -71,9 +72,9 @@ const Mypage = () => {
             <TextField
               id="nickName"
               size="medium"
-              variant="standard"
+              variant="outlined"
               value={userProfile.userNickname || ""}
-              textAlign="center"
+              style={styles.profileName}
             />
           </div>
         </div>
@@ -121,6 +122,11 @@ const styles = {
     border: "1px solid black",
     height: "50px",
     marginTop: 50,
+  },
+  profileName: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   profileText: {
     marginTop: 15,

@@ -60,7 +60,15 @@ const MyApplyItem = ({
           </div>
         </div>
         <div style={styles.statusDiv}>
-          <Button id="status" variant="contained" style={styles.statusButton}>
+          <Button
+            id="status"
+            variant="contained"
+            style={
+              statusCode[status] === "대기중"
+                ? styles.waitButton
+                : styles.statusButton
+            }
+          >
             {statusCode[status]}
           </Button>
           <Button
@@ -94,24 +102,33 @@ const styles = {
     height: 80,
   },
   helpContent: {
-    width: "65%",
+    width: "61%",
   },
   helpInfoDiv: {
-    width: "34%",
+    width: "38%",
     float: "right",
   },
   statusDiv: { border: "1px solid black", height: 50 },
-  statusButton: {
-    width: 110,
+  waitButton: {
     height: 30,
     marginTop: 10,
     marginLeft: 80,
+    color: "black",
+    background: "white",
+  },
+  statusButton: {
+    height: 30,
+    marginTop: 10,
+    marginLeft: 80,
+    color: "white",
+    background: "black",
   },
   cancelButton: {
-    width: 80,
     height: 30,
     marginTop: 10,
     marginLeft: 65,
+    color: "black",
+    background: "white",
   },
 };
 

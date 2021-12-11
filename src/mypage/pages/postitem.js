@@ -15,7 +15,7 @@ const PostItem = ({ id, userId, content, imageUrl }) => {
           <TextField
             id="content"
             size="medium"
-            variant="standard"
+            variant="outlined"
             value={content || ""}
             style={styles.postContent}
           />
@@ -37,6 +37,7 @@ const styles = {
     height: 80,
   },
   postContent: {
+    marginTop: 10,
     width: "60%",
   },
 };

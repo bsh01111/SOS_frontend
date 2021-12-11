@@ -52,7 +52,7 @@ const MyHelpItem = ({ id, content, location, cost, status }) => {
 };
 
 const styles = {
-  container: { border: "1px solid black", marginTop: 50 },
+  container: { border: "1px solid black", marginBottom: 130 },
   helpDiv: {
     border: "1px solid black",
     height: 80,
