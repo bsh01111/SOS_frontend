@@ -24,8 +24,14 @@ const EditProfile = () => {
 
   const pageHistory = useHistory();
   const onClickEditProfileButton = async () => {
-    const response = await MyPageService.updateProfile(profileInfo);
-    pageHistory.push("/myPage");
+    try {
+      await MyPageService.updateProfile(profileInfo);
+      alert("프로필 수정 완료!");
+      pageHistory.push("/myPage");
+    } catch (e) {
+      alert("에러! 프로필 수정에 실패하였습니다.");
+      pageHistory.push("/myPage");
+    }
   };
 
   return (
